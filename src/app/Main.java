@@ -8,6 +8,7 @@ public class Main {
         List<Integer> l = new ArrayList<>();
         l.add(10);
         l.add(9);
-        System.out.println(l.get(1));
+        l.add(8);
+        System.out.println(l.get(2));
     }
 }
