@@ -28,6 +28,13 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public boolean contains(T elem) {
+        Iterator<T> it = iterator();
+        while(it.hasNext()) {
+            T o = it.next();
+            if(elem.equals(o)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -38,7 +45,15 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void remove(T elem) {
-
+        for(int i = 0; i < size(); i++) {
+            T o = get(i);
+            if (elem.equals(o)) {
+                for(int j = i; j < size() - 1; j++) {
+                    set(j, get(j + 1));
+                }
+                sz--;
+            }
+        }
     }
 
     @Override
@@ -47,44 +62,20 @@ public class ArrayList<T> implements List<T> {
     }
 
 
-    private class MyIterator implements Iterator<T> {
-        private int pos = 0;
-        @Override
-        public boolean hasNext() {
-            return pos < size();
-        }
-
-        @Override
-        public T next() {
-            return get(pos++);
-        }
-    }
-
-
-
-    /*
-    // Terzo metodo: il tipo di ritorno di iterator è diverso
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
+            private int pos = 0;
             @Override
             public boolean hasNext() {
-                return false;
+                return pos < size();
             }
 
             @Override
             public T next() {
-                return null;
+                return get(pos++);
             }
         };
-    }
-    */
-    @Override
-    public Iterator<T> iterator() {
-        return new MyIterator();
-
-        // Ritorno nel secondo metodo:
-        // return new ArrayListIterator<T>(this);
     }
 
     @Override
