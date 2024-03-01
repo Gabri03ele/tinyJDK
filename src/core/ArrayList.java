@@ -101,11 +101,34 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void add(int i, T elem) {
+        if(sz >= v.length) {
+            Object[] old = v;
+            v = new Object[v.length * 2];
+            for(int j = 0; j < old.length; j++) {
+                v[j] = old[j];
+            }
+        }
 
+        if(i <= sz) {
+            v[i] = elem;
+            sz++;
+        } else {
+            throw new RuntimeException(String.format("ArrayList.add(i, elem): index %d out of bounds %d", i, sz));
+        }
     }
 
     @Override
     public T remove(int i) {
-        return null;
+        if(i < sz) {
+            T old = (T) v[i];
+            for(int j = i; j < size() - 1; j++) {
+                set(j, get(j + 1));
+            }
+            sz--;
+
+            return old;
+        } else {
+            throw new RuntimeException(String.format("ArrayList.add(i, elem): index %d out of bounds %d", i, sz));
+        }
     }
 }
