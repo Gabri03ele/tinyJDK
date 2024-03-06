@@ -11,7 +11,16 @@ public interface Collection<T> extends Iterable<T> {
     }
 
     void clear();
-    boolean contains(T elem);
+    default boolean contains(T elem) {
+        Iterator<T> it = iterator();
+        while(it.hasNext()) {
+            T e = it.next();
+            if(e.equals(elem)) {
+                return true;
+            }
+        }
+        return false;
+    }
     boolean isEmpty();
     void remove(T elem);
     int size();
