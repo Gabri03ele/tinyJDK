@@ -1,36 +1,20 @@
 package core;
 
-public class StructuralSet<T> implements Set<T> {
-    private List<T> l = new ArrayList<>();
+public class StructuralSet<T> extends AbstractResizableArray<T> implements Set<T> {
     @Override
-    public void add(T elem) {
-        if(!l.contains(elem)) {
-            l.add(elem);
-        }
+    public void add(T x) {
+        if (!contains(x))
+            super.add(x);
     }
 
     @Override
-    public void clear() {
-        l.clear();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return l.isEmpty();
-    }
-
-    @Override
-    public void remove(T elem) {
-        l.remove(elem);
-    }
-
-    @Override
-    public int size() {
-        return l.size();
+    public void remove(T x) {
+        // TODO
     }
 
     @Override
     public Iterator<T> iterator() {
-        return l.iterator();
+        // TODO
+        return null;
     }
 }

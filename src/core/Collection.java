@@ -9,8 +9,6 @@ public interface Collection<T> extends Iterable<T> {
             add(it.next());
         }
     }
-
-    void clear();
     default boolean contains(T elem) {
         Iterator<T> it = iterator();
         while(it.hasNext()) {
@@ -21,6 +19,7 @@ public interface Collection<T> extends Iterable<T> {
         }
         return false;
     }
+    void clear();
     boolean isEmpty();
     void remove(T elem);
     int size();
